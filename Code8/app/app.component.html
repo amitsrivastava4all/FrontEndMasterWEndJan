@@ -1,0 +1,7 @@
+<h1 [hidden]="isHide">This is Angular HTML File</h1>
+<p>{{str|uppercase}}</p>
+<h2 [class]="cssClass" [innerText]="str"></h2>
+<h3 [innerText]="'Hello this is plain text'"></h3>
+<h5 class="green">TEXT</h5>
+<button (click)="showHide()">Show Hide</button>
+<input type="text" (input)="takeInput($event)" placeholder='Type Name'>
