@@ -1,0 +1,18 @@
+<div><label for="">Basic Salary</label>
+    <input (input)="takeSalary($event)" type="text" placeholder='Type Salary Here'>
+</div>
+<fieldset>
+    <legend>Output</legend>
+    <p>Basic Salary is {{basicSalary}}</p>
+    <p>Hra is {{salaryService.hra()}}</p>
+    <p>DA is {{salaryService.da()}}</p>
+    <p>TA is {{salaryService.ta()}}</p>
+    <p>PF is {{salaryService.pf()}}</p>
+    <p>GS is {{salaryService.gs()}}</p>
+    <p>NS is {{salaryService.ns()}}</p>
+</fieldset>
+<ul>
+    <li *ngFor="let fruit of fruits">
+        {{fruit}}
+    </li>
+</ul>
