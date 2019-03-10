@@ -1,0 +1,32 @@
+<div><label for="">Basic Salary</label>
+    <input (input)="takeSalary($event)" type="text" placeholder='Type Salary Here'>
+</div>
+<fieldset>
+    <legend>Output</legend>
+    <p>Basic Salary is {{basicSalary}}</p>
+    <p>Hra is {{salaryService.hra()}}</p>
+    <p>DA is {{salaryService.da()}}</p>
+    <p>TA is {{salaryService.ta()}}</p>
+    <p>PF is {{salaryService.pf()}}</p>
+    <p [ngStyle]="{'background-color':salaryService.gs()>5000?'green':'orange'}">GS is {{salaryService.gs()}}</p>
+    <p [ngClass]="salaryService.ns()>5000?'red':'green'">NS is {{salaryService.ns()}}</p>
+</fieldset>
+
+<div *ngIf="cardNumber==0; then nocard else card"></div>
+<ng-template #card>Your Card Number is {{cardNumber}}.</ng-template>
+<ng-template #nocard>Please Enter the Card Number to Proceed</ng-template>
+
+<br> Card Type
+<input type="text" (input)="takeCardNo($event)">
+<img src="{{cardNumber|card}}"> Fruits are {{fruits|json}}
+<br> {{fruits}}
+<ul>
+    <li *ngFor="let fruit of fruits;let i=index">
+        <div *ngIf="fruit.name=='Apple'">
+            <h1>{{fruit.name}}</h1>
+        </div>
+        <div *ngIf="fruit.name!='Apple'">
+            {{i+1}} {{fruit.name|uppercase|prefix:'BB'|slice:0:4}} {{fruit.price|currency:'INR':true:'.2'}}
+        </div>
+    </li>
+</ul>
