@@ -1,0 +1,9 @@
+<h1>Rx Demo</h1>
+<button (click)="callRx()">Call Rx</button>
+<br>
+<button (click)="callAjax()">Ajax</button> Data is {{data|json}}
+<ul>
+    <li *ngFor="let d of data">
+        {{d.id}} {{d.name}} {{d.price}} <img [src]="d.url">
+    </li>
+</ul>

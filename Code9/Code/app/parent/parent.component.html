@@ -1,0 +1,11 @@
+<p>
+    parent works!
+</p>
+<h3>Data from Child is {{str}}</h3>
+<input type="text" (input)="takeInput($event)" placeholder="Type Data to Send ">
+<h4>Parent Txt is {{txt}}</h4>
+<app-child (sendtochild)="recDataFromChild($event)" [parentdata]="txt"></app-child>
+<app-child (sendtochild)="recDataFromChild($event)" [parentdata]="txt"></app-child>
+<app-child (sendtochild)="recDataFromChild($event)" [parentdata]="txt"></app-child>
+<app-child (sendtochild)="recDataFromChild($event)" [parentdata]="txt"></app-child>
+<app-child (sendtochild)="recDataFromChild($event)" [parentdata]="txt"></app-child>

@@ -1,0 +1,6 @@
+<h3>I am App</h3>
+<input type="text" placeholder="Type Id Here" #id>
+<input type="text" (input)="sendToService($event,id.value)" placeholder="Type data to Send Via Service">
+<p>Data is {{title}}</p>
+<h1>Comp Interaction Demo</h1>
+<app-parent></app-parent>
