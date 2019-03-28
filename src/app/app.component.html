@@ -1,0 +1,15 @@
+<h1 class='alert-primary'>Rx Demo</h1>
+<button (click)="callRx()">Call Rx</button>
+<br>
+<button (click)="callAjax()">Ajax</button> Data is {{data|json}}
+<ul>
+    <li *ngFor="let d of data">
+        {{d.id}} {{d.name}} {{d.price}} <img [src]="d.url">
+    </li>
+</ul>
+<button (click)="showHide()">Show</button>
+<div id='show'>
+    <input class='form-control' (input)="sendData($event)" type='text' placeholder='Type to Send Data to Child'>
+    <br>
+    <app-child1></app-child1>
+</div>

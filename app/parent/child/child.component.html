@@ -1,0 +1,10 @@
+<p>
+    child works!
+</p>
+<h3>Child Rec Data From Parent {{x}}</h3>
+<input #t1 type="text" placeholder="Type to Send Data to Parent">
+<button (click)="send(t1.value)">Send Data to Parent</button>
+<br> Message is {{msg}}
+<br>
+<button (click)="getData()">Get Data</button>
+<p>The Service Get Data is {{serviceData}}</p>
