@@ -1,0 +1,29 @@
+Pipe Example {{title|mypipe}}
+
+<div *ngIf="message=='S' then routes else login">
+
+</div>
+<ng-template #login>
+    <app-login></app-login>
+</ng-template>
+
+<ng-template #routes>
+    <input type="text" [(ngModel)]="name" placeholder="Type Name Here">
+    <input type="text" [(ngModel)]="address" placeholder="Type Address Here">
+    <button (click)="changeParams()">Change Params</button>
+    <ul>
+        <li *ngFor="let menu of menus">
+
+
+
+            <a routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" [routerLink]="menu.link" [innerText]="menu.name"></a>
+        </li>
+    </ul>
+    <!-- <a routerLink="/ ">Home</a>
+    <a routerLink="/about ">About</a>
+    <a routerLink="/contact ">Contact</a> -->
+    <br>
+    <hr>
+    <router-outlet></router-outlet>
+
+</ng-template>
