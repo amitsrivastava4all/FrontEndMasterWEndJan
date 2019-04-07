@@ -1,0 +1,7 @@
+<div *ngIf="customers.length>0">
+    <ul>
+        <li *ngFor="let customer of customers">
+            <p>{{customer.name}} &nbsp; {{customer.address}} <button (click)="view(customer.name)">View</button> <button>Edit</button></p>
+        </li>
+    </ul>
+</div>
