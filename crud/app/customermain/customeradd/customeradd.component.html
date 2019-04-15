@@ -1,0 +1,33 @@
+<h3 [ngClass]="{'alert-danger':isValidationFailed,'alert-success':!isValidationFailed}">{{message}}</h3>
+Change Language
+<button (click)="changeLang('hi')">Hindi </button>
+<button (click)="changeLang('en')">English </button>
+<form (ngSubmit)="add()" [formGroup]="customerAddForm">
+    <div class='form-group'>
+        <label for="">{{'customer.name'|translate}}</label>
+        <input type="text" placeholder="Type Your Name Here" formControlName="cname" name="cname" class='form-control'>
+        <span class='error' *ngIf="customerAddForm.get('cname').touched && customerAddForm.get('cname').invalid && customerAddForm.get('cname').errors['required'] ">Customer Name is Needed</span>
+        <span class='error' *ngIf="customerAddForm.get('cname').touched && customerAddForm.get('cname').invalid && customerAddForm.get('cname').errors['pattern'] ">Customer Name Must be B/W 3 to 30 Chars</span>
+        <span class='error' *ngIf="customerAddForm.get('cname').touched && customerAddForm.get('cname').invalid && customerAddForm.get('cname').errors['userExist'] ">Customer Name is Exist use Another Name</span>
+    </div>
+    <div class='form-group'>
+        <label for="">{{'customer.address'|translate}}</label>
+        <input type="text" placeholder="Type Your Address Here" formControlName="address" name="address" class='form-control'>
+        <span class='error' *ngIf="customerAddForm.get('address').touched && customerAddForm.get('address').invalid && customerAddForm.get('address').errors['required'] ">Address is Needed</span>
+    </div>
+    <div class='form-group' formArrayName="phone">
+        <label for="">{{'customer.phone'|translate}}</label>
+        <!-- <input type="text" placeholder="Type Your Phone Here" formControlName="phone" name="phone" class="form-control"> -->
+        <button type='button' class='btn btn-dark' (click)="addPhone()">Add Phone</button>
+        <ul>
+            <li *ngFor="let phone of customerAddForm.get('phone').controls;let i=index">
+                <input type="text" [formControlName]="i">
+            </li>
+        </ul>
+    </div>
+    <div class="form-group">
+        <button class='btn btn-primary'>{{'customer.add'|translate}}</button>
+    </div>
+
+
+</form>

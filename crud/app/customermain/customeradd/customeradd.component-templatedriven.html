@@ -1,0 +1,25 @@
+<h3 [ngClass]="{'alert-danger':isValidationFailed,'alert-success':!isValidationFailed}">{{message}}</h3>
+<form (ngSubmit)="add(customerform)" #customerform="ngForm">
+    <div class='form-group'>
+        <label for="">Name</label>
+        <input #cname="ngModel" required pattern="[a-zA-Z]{3,30}" ngModel name="cname" type="text" placeholder="Type Your Name" #name class='form-control'>
+        <br> Customer Name Status
+        <br> Not MOdified{{cname.pristine}}
+        <br> Focus Done {{cname.touched}}<br> Not Focus{{cname.untouched}}<br> Modified{{cname.dirty}}
+        <br> Valid{{cname.valid}}
+        <br> InValid {{cname.invalid}}<br>
+        <br> Error {{cname.errors|json}}<br>
+        <span class='alert-danger' *ngIf="cname.touched && cname.invalid && cname.errors['required']">Customer Name is Required</span>
+        <br>
+        <span class='alert-danger' *ngIf="cname.touched && cname.invalid && cname.errors['pattern']">Customer Name must be between 3 to 30 chars </span>
+    </div>
+    <div class='form-group'>
+        <label for="">Address</label>
+        <input #address="ngModel" required ngModel name="address" type="text" placeholder="Type Your Address" class='form-control'>
+        <span class='alert-danger' *ngIf="address.touched && address.invalid && address.errors['required']">Address  is Required</span>
+    </div>
+    <div class='form-group'>
+        <button class='btn btn-primary'>Add</button>
+        <!-- <button (click)="add(name.value,address.value)" class='btn btn-primary'>Add</button> -->
+    </div>
+</form>

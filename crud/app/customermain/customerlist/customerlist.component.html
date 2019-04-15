@@ -1,0 +1,18 @@
+<div *ngIf="customers.length>0">
+    <table class='table table-bordered'>
+        <tr class='thead-dark'>
+            <th>S.no</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Phones</th>
+            <th>Operations</th>
+        </tr>
+        <tr *ngFor="let customer of customers;let i =index" [@listanimation]>
+            <td>{{i+1}}</td>
+            <td>{{customer.name}} </td>
+            <td>{{customer.address}}</td>
+            <td>{{customer.phones}}</td>
+            <td> <button class='btn btn-info mr-2' (click)="view(customer.name)">View</button> <button class='btn btn-success'>Edit</button></td>
+        </tr>
+    </table>
+</div>
