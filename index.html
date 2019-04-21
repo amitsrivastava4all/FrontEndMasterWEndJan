@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue Demo</title>
+    <style>
+    img{
+        width:100px;
+        height:100px;
+    }
+    .red{
+        color:red;
+    }
+    .green{
+        color:green;
+    }
+    </style>
+    <script src="vue.min.js"></script>
+    <script>
+        class Item{
+            constructor(id ,name, price, url){
+                this.id = id ;
+                this.name = name;
+                this.price = price;
+                this.url = url;
+            }
+        }
+        const itemOperatons = {
+            items:[],
+            loadItems(){
+                this.items.push(new Item(1001,'Apple',100,'https://i.pinimg.com/originals/dc/fc/b9/dcfcb960294764538b8c0d4a55a9ea21.png'));
+                this.items.push(new Item(1002,'Mango',200,'https://srilankanfruits.files.wordpress.com/2017/01/mango-by-air.jpg?w=256&h=256&crop=1'));
+                console.log("Load Items are ",this.items);
+                return this.items;
+            }
+        }
+    window.addEventListener('load',()=>{
+        new Vue({
+            el:'#app',  // dom access
+            data:{ // provide data to dom
+                items:itemOperatons.loadItems(),
+                myhtml:`<h1>this is html to be render</h1>`,
+                flag:false,
+                mycolor:"aqua",
+                sum:0,
+                myname:'Default Name',
+                name:'Apple',
+                price:90000,
+                quantity:10,
+                cartCounter:0,
+                url:'https://www.91-img.com/pictures/121008-v1-apple-iphone-x-mobile-phone-large-1.jpg'
+            },
+            methods:{ // all functions
+                // loadItems(){
+                //         this.items = itemOperatons.loadItems();
+                //         console.log('Load Items are ',this.items);
+                // },
+                takeDesign(event){
+                        this.myhtml = event.target.value;
+                },
+                    takeInput(event){
+                            this.myname = event.target.value;
+                            
+                    },
+                    add(first, second, third, event){
+                        this.mycolor = 'red';
+                        this.sum = parseInt(first) + parseInt(second) + parseInt(third);
+                    }
+            }
+        });
+    })
+    </script>
+</head>
+<body>
+    <div id='app'>
+        <!-- <button @click="loadItems">Load Items</button> -->
+       
+        <ul>
+            <li v-for="fruit in items">
+                {{fruit.id}} {{fruit.name}} {{fruit.price}} <img :src="fruit.url">
+            </li>
+        </ul>
+        <div v-html="myhtml">
+
+        </div>
+        <hr>
+        <textarea placeholder="Type HTML Here" @keyup="takeDesign" cols="30" rows="10"></textarea>
+        <!-- <input type="text" v-on:keyup="takeInput" placeholder="Enter your name"> -->
+        <!-- <input type="text" @keyup.enter="takeInput" placeholder="Enter your name"> -->
+        <input type="text" @keyup="takeInput" placeholder="Enter your name">
+        <input id='first' type="text" placeholder="Type First Number">
+        <input id='second' type="text" placeholder="Type Second Number">
+        <input id='third' type="text" placeholder="Type Third Number">
+        <button @click="add(first.value, second.value, third.value, $event)">Sum</button>
+        <p :class="{red:sum<200,green:sum>=200}">Sum is {{sum}}</p>
+        <p v-once :style="{color:mycolor}">Your Name is {{myname}}</p>
+        <p>Brand is {{name}}</p>
+        <p>Quantity is {{quantity}}</p>
+        <p>Price is {{price}}</p>
+        <img class='size' :src="url">
+        <img class='size' v-bind:src="url">
+        <button @click="cartCounter++">Add to Cart</button>
+        <p v-if="cartCounter>=5">Discount offer if u buy 5 items 20% Off</p>
+        <p v-else>No Discount Item Less than  5</p>
+        <p>Items in Cart {{cartCounter}}</p>
+        <button :disabled="!cartCounter>0">Buy</button>
+
+    </div>
+</body>
+</html>
