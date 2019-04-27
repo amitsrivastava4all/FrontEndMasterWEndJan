@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .green{
+        color:green;
+    }
+    .red{
+        color:red;
+    }
+    </style>
+    <script src="vue.min.js"></script>
+    <script>
+        window.addEventListener('load',()=>{
+            new Vue({
+        el:'#app',
+        data:{
+            // data bind with view
+            x:10,
+            name:'',
+            myclass:'green',
+            songs:["It's My Life","Bang Bang"]
+        },
+        methods:{
+            // event bind with methods
+            takeName(event){
+                this.name = event.target.value;
+                if(this.name.length>5){
+                    this.myclass = 'red';
+                }
+            }
+        }
+    })
+        })
+   
+    </script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="song in songs">
+                    {{song}}
+            </li>
+        </ul>
+        <h1 v-if="name.length>0">Welcome {{name}}</h1>
+        <input @keyup="takeName" type="text" placeholder="Type Your Name">
+        <!-- <p>{{x}}</p> -->
+        <p v-html="x"></p>
+        <p :class="myclass">Your Name is {{name}}</p>
+    </div>
+</body>
+</html>

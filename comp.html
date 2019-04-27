@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.min.js"></script>
+    <script>
+    window.addEventListener('load',()=>{
+        
+        Vue.component('app-login',{
+            props:{
+                msg2:'',
+                count2:0
+            },
+            template:`<div>
+            <h1>{{title}} </h1>
+            <h3>{{message}}</h3>
+            <h4>{{msg2}}</h4>
+            <h5>Count is {{count2}} </h5>
+            <input v-model="userid" type='text' placeholder='Type Userid Here'>
+            {{userid}}
+            <input v-model="password" type='password' placeholder='Type Password Here'>
+            {{password}}
+            <button @click="doLogin">Login </button>
+            <button @click="doIncrement2">Increment by Last Child </button>
+            </div>`,
+            data(){
+                return {
+                    title : 'Login Page...',
+                    userid:'',
+                    password:'',
+                    message :''
+                }
+            },
+            methods:{
+                doIncrement2(){
+                    this.$emit('my-increment2');
+                },
+                doLogin(){
+                    if(this.userid == this.password){
+                        this.message = 'Welcome '+this.userid;
+                    }
+                    else{
+                        this.message = 'Invalid Userid or password';
+                    }
+                }
+            }
+        });
+        Vue.component('app-root',{
+            props:{
+                msg:'',
+                count:0,
+            },
+            template:`<div>
+            <h1>Home Page {{msg}} </h1>
+            <p>Counter is {{count}}</p>
+            <button @click="doIncrement">Increment Counter  </button>
+            <app-login @my-increment2="doIncrement" :count2="count" :msg2="msg"></app-login>
+            </div>`,
+            methods:{
+                doIncrement(){
+                    this.$emit('my-increment-event');
+                }
+            }
+        });
+        new Vue({
+            el:'#app',
+            data:{
+                counter:1000,
+                message :'I want to share this message'
+            },
+            methods:{
+                increment(){
+                        this.counter++;
+                },
+
+                shareIt(event){
+                    this.message = event.target.value;
+                }
+            }
+        })
+    });
+    </script>
+</head>
+<body>
+    <div id='app'>
+        <input type="text" @keyup="shareIt" placeholder="Share this message to all">
+       
+        <app-root @my-increment-event="increment" :count="counter" :msg="message"></app-root>
+       
+    </div>
+</body>
+</html>

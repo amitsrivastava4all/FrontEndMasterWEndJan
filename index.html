@@ -95,7 +95,8 @@
         <input id='third' type="text" placeholder="Type Third Number">
         <button @click="add(first.value, second.value, third.value, $event)">Sum</button>
         <p :class="{red:sum<200,green:sum>=200}">Sum is {{sum}}</p>
-        <p v-once :style="{color:mycolor}">Your Name is {{myname}}</p>
+        <p :style="{color:mycolor}">With Once {{myname}}</p>
+        <p v-once :style="{color:mycolor}">Once Example Your Name is {{myname}}</p>
         <p>Brand is {{name}}</p>
         <p>Quantity is {{quantity}}</p>
         <p>Price is {{price}}</p>
